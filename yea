@@ -1,0 +1,48 @@
+import plotly.graph_objects as go
+
+# Data for wing length of non-survivors (Table 1.1)
+non_survivor_wing_length = [
+    67.00, 66.00, 64.19, 67.19, 70.19, 71.19, 67.19, 68.19, 68.19, 70.00,
+    67.00, 70.00, 66.00, 66.00, 67.00, 67.00, 64.00, 71.00, 65.00, 69.00,
+    65.00, 65.00, 70.00, 72.00, 68.00, 68.90, 64.20, 73.00, 68.00, 68.00,
+    68.00, 65.00, 69.00, 70.00, 70.00, 66.00, 67.00, 67.00, 66.00, 70.00,
+    66.00, 71.00, 69.00, 66.00, 66.00, 65.00, 67.00, 70.00, 72.00, 66.00
+]
+
+# Data for wing length of survivors (Table 1.2)
+survivor_wing_length = [
+    71.00, 67.00, 70.00, 68.00, 67.00, 72.00, 67.00, 65.00, 65.00, 66.00,
+    68.19, 70.19, 68.19, 72.19, 71.19, 72.19, 68.19, 65.19, 66.19, 72.69,
+    67.69, 72.19, 72.19, 70.19, 65.19, 69.19, 68.19, 70.00, 66.00, 68.01,
+    72.94, 67.95, 67.00, 71.00, 71.01, 71.45, 68.01, 71.01, 71.95, 74.01,
+    70.01, 71.01, 70.41, 70.45, 69.01, 69.45, 70.95, 69.47, 67.50, 69.00
+]
+
+# Combine the data and create trace for non-survivors
+trace_non_survivors = go.Bar(
+    x=['Non-Survivors'] * len(non_survivor_wing_length),
+    y=non_survivor_wing_length,
+    name='Non-Survivors',
+    marker=dict(color='red')
+)
+
+# Create trace for survivors
+trace_survivors = go.Bar(
+    x=['Survivors'] * len(survivor_wing_length),
+    y=survivor_wing_length,
+    name='Survivors',
+    marker=dict(color='blue')
+)
+
+# Create the layout for the graph
+layout = go.Layout(
+    title='Wing Length of Non-Survivors vs. Survivors',
+    xaxis=dict(title='Survival Status'),
+    yaxis=dict(title='Wing Length (mm)')
+)
+
+# Combine the traces and create the figure
+fig = go.Figure(data=[trace_non_survivors, trace_survivors], layout=layout)
+
+# Show the graph
+fig.show()
